@@ -64,16 +64,16 @@ jobs:
 
           if [ "$PREV" != "$CURR" ]; then
             if [ "$CURR" = "offline" ]; then
-              curl -s \
-                -H "Title: ESP OFFLINE" \
+              curl -v \
+                -H "Title: ⚠️ НЕТ СВЕТА" \
                 -H "Priority: high" \
-                -d "-d "⚡ Дома пропало электричество" \
+                -d "⚡ Дома пропало электричество" \
                 "$NTFY_URL"
             else
-              curl -s \
-                -H "Title: ESP ONLINE" \
-                -H "Priority: default" \
-                -d "-d "✅ Электричество снова появилось" \
+              curl -v \
+                -H "Title: ✅ СВЕТ ЕСТЬ" \
+                -H "Priority: high" \
+                -d "✅ Электричество появилось" \
                 "$NTFY_URL"
             fi
 
