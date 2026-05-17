@@ -67,13 +67,13 @@ jobs:
               curl -s \
                 -H "Title: ESP OFFLINE" \
                 -H "Priority: high" \
-                -d "ESP-01 stopped updating ThingSpeak" \
+                -d "-d "⚡ Дома пропало электричество" \
                 "$NTFY_URL"
             else
               curl -s \
                 -H "Title: ESP ONLINE" \
                 -H "Priority: default" \
-                -d "ESP-01 restored connection" \
+                -d "-d "✅ Электричество снова появилось" \
                 "$NTFY_URL"
             fi
 
