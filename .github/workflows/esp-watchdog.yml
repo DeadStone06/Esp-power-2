@@ -22,7 +22,7 @@ jobs:
           NTFY_URL: ${{ secrets.NTFY_URL }}
         run: |
 
-          URL="https://api.thingspeak.com/channels/3386250/feeds.json?results=1"
+          URL="URL="https://api.thingspeak.com/channels/3386250/feeds.json?api_key=SH2V8XD2SK7H0JAM&results=1""
 
           RESPONSE=$(curl -s --max-time 15 \
             -H "Accept: application/json" \
