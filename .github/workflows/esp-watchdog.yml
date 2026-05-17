@@ -21,7 +21,6 @@ jobs:
         env:
           NTFY_URL: ${{ secrets.NTFY_URL }}
         run: |
-
           URL="https://api.thingspeak.com/channels/3386250/feeds.json?api_key=SH2V8XD2SK7H0JAM&results=1"
 
           RESPONSE=$(curl -s --max-time 15 \
@@ -38,7 +37,7 @@ jobs:
           if [ "$LAST_TS" = "null" ] || [ -z "$LAST_TS" ]; then
             echo "No data"
             exit 0
-          }
+          fi
 
           NOW=$(date -u +%s)
           LAST=$(date -d "$LAST_TS" +%s)
@@ -48,7 +47,7 @@ jobs:
           echo "Last update: $LAST_TS"
           echo "Diff seconds: $DIFF"
 
-          if [ "$DIFF" -gt 300 ]; then
+          if [ "$DIFF" -gt 120 ]; then
             CURR="offline"
           else
             CURR="online"
@@ -64,17 +63,13 @@ jobs:
           echo "Curr state: $CURR"
 
           if [ "$PREV" != "$CURR" ]; then
-
             if [ "$CURR" = "offline" ]; then
-
               curl -s \
                 -H "Title: ESP OFFLINE" \
                 -H "Priority: high" \
                 -d "ESP-01 stopped updating ThingSpeak" \
                 "$NTFY_URL"
-
             else
-
               curl -s \
                 -H "Title: ESP ONLINE" \
                 -H "Priority: default" \
