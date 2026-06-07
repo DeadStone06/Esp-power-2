@@ -23,9 +23,17 @@ jobs:
         run: |
           URL="https://api.thingspeak.com/channels/3386250/feeds.json?api_key=SH2V8XD2SK7H0JAM&results=1"
 
-          RESPONSE=$(curl -s --max-time 15 \
-            -H "Accept: application/json" \
-            "$URL")
+          RESPONSE=$(curl -s \
+  --connect-timeout 5 \
+  --max-time 15 \
+  --retry 3 \
+  --retry-delay 2 \
+  --retry-all-errors \
+  -H "Accept: application/json" \
+  "$URL") || {
+    echo "ThingSpeak unavailable"
+    exit 0
+}
 
           echo "$RESPONSE" | jq . >/dev/null || {
             echo "Invalid JSON"
