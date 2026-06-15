@@ -73,13 +73,13 @@ jobs:
           if [ "$PREV" != "$CURR" ]; then
             if [ "$CURR" = "offline" ]; then
               curl -v \
-                -H "Title: ⚠️ НЕТ СВЕТА" \
+                -H "Title: ⚠️ НЕТ СВЕТА(Р)" \
                 -H "Priority: high" \
                 -d "⚡ Дома пропало электричество" \
                 "$NTFY_URL"
             else
               curl -v \
-                -H "Title: ✅ СВЕТ ЕСТЬ" \
+                -H "Title: ✅ СВЕТ ЕСТЬ(Р)" \
                 -H "Priority: high" \
                 -d "✅ Электричество появилось" \
                 "$NTFY_URL"
