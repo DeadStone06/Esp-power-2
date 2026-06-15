@@ -55,7 +55,7 @@ jobs:
           echo "Last update: $LAST_TS"
           echo "Diff seconds: $DIFF"
 
-          if [ "$DIFF" -gt 120 ]; then
+          if [ "$DIFF" -gt 180 ]; then
             CURR="offline"
           else
             CURR="online"
